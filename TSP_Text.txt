@@ -1,0 +1,34 @@
+CSIT301
+Assignment 1
+Abhyuday Singh
+15-03-23
+
+Travelling Salesman Problem
+
+
+Given a set of cities and the distances between each and every pair of them, the travelling salesman problem (TSP) asks you to find the shortest path possible that visits each city only once and returns to the starting city.
+
+This deceptively simple statement leads to a problem that is both famous and famously difficult, as the time to compute the optimal solution increases massively as the number of cities grows. First formulated in the 18th century by Irish mathematician Sir William Rowan Hamilton and British mathematician Thomas Penyngton Kirkland, the problem was studied studied in depth from the 1930s onwards, when early studies concluded that if the number of cities is finite, it can be solved in finite time by trial and error, though trial and error is far from the ideal solution. It became an international phenomenon in the field of mathematics by the 1960s, when it was found that branch and bound solutions that create sub-problems and formulate lower bounds for them tend to yield the best results, and an approach that converted the graph of cities to a minimum spanning tree yielded a result that at worst was only twice as long as the optimal solution. Building on that foundation, in 1976 the Christofides algorithm was devised, for which the worst case solution is only 1.5 times longer than the optimal solution. As of today, they are a multitude of methods that aim to solve the TSP, with some yielding the optimal results in certain cases, but for most intents and purposes the Christofide algorithm remains one of the best yet discovered.
+
+It has an incredible number of applications as well, across its many forms where the 'cities' can be anything and the 'distances' a general kind of weight (time, monetary cost, etc.). It can be used to chart efficient bus routes and band tour schedules, or to study the structure of crystals or help in microchip manufacture, among many others.
+
+For the purpose of the assignment, I have devised a few intuitive solutions in Python, as well as a few that I had to do a fair bit of research for. They are included in the zip file with the reasoning behind how they work given below. Further details and how the programming aspect of these approaches work are given in the form of comments in the files themselves.
+
+1.
+BRUTE FORCE
+(File Name: BruteForce_TSP.py)
+
+This approach involves generating all possible paths from one city that visit each other city only once and find the cost cost of each one of them, updating them if they are smaller than any that have been seen so far.
+The time complexity of this approach is O(n!) as all possible permutations of the cities are generated and weighed. This is the trial and error approach mentioned earlier and truly, it is far from ideal. However, it does yield the correct answer and is a viable method when the number of cities is in early single digits.
+
+2.
+GREEDY ALGORITHM
+(File Name: GreedyAlgorithm_TSP)
+
+The greedy approach to this problem works by starting at a city and moving to the closest unvisited city from there, and so on.
+This approach does not promise an optimal solution in all cases, but being O(N^2 * logN) it is significantly faster than most approaches and that speed makes it good enough for a lot of practical purposes.
+Reference used to check code and make it cleaner: https://www.interviewbit.com/blog/travelling-salesman-problem/
+
+Note that the results for the first example are the same for both methods, but results differ for the next two (difference of 8 for example 2 and of 15 for example 3). This highlights that the greedy approach isn't always correct, but due to the relatively small differences in most cases, it has uses in the practical sense.
+
+Better methods to reach a solution, such as branch and bound, minimum spanning tree, and Christofides algorithm were left off from this project as I could not understand them well enough to code by myself. The Python Package Index has packages that make the usage of these methods simpler or implement them directly given a graph.
